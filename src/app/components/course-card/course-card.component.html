@@ -1,0 +1,20 @@
+<!-- Using ngClass to dynamically apply a CSS class based on completion status -->
+<div class="card" [ngClass]="{'completed-card': course.isCompleted, 'active-card': !course.isCompleted}">
+  
+  <!-- Using the uppercase pipe -->
+  <h3>{{ course.title | uppercase }}</h3>
+  
+  <p>Instructor: <strong>{{ course.instructor }}</strong></p>
+  
+  <!-- Using the date pipe with a custom format -->
+  <p>Enrolled On: {{ course.enrollmentDate | date:'longDate' }}</p>
+  
+  <p>Status: 
+    <span *ngIf="course.isCompleted" style="color: green;">Completed</span>
+    <span *ngIf="!course.isCompleted" style="color: orange;">In Progress</span>
+  </p>
+  
+  <button (click)="onToggle()">
+    {{ course.isCompleted ? 'Mark In Progress' : 'Mark Complete' }}
+  </button>
+</div>
